@@ -97,7 +97,7 @@ async function onUpdate (update) {
  */
 async function onMessage (message) {
   if(message.text === '/start'){
-    let startMsg = await fetch(startMsgUrl).then(r => r.text())
+    let startMsg = '欢迎留言，不定时在线，看到消息后会及时回复！☺️'
     return sendMessage({
       chat_id:message.chat.id,
       text:startMsg,
@@ -169,7 +169,7 @@ async function handleNotify(message){
       await nfd.put('lastmsg-' + chatId, Date.now())
       return sendMessage({
         chat_id: ADMIN_UID,
-        text:await fetch(notificationUrl).then(r => r.text())
+        text: `苹果直达链接：tg://user?id=${chatId} \n安卓直达链接：tg://openmessage?user_id=${chatId} \n当前用户 UID:${chatId} 未在黑名单内，可放心交易。\n 常用命令：/block /unblock /checkblock`
       })
     }
   }
